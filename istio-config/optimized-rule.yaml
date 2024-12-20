@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: grpc-destination-rule
+  namespace: dev
+spec:
+  host: grpc-service.dev.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: LEAST_REQUEST # Ensures even distribution based on load
+    connectionPool:
+      http:
+        http1MaxPendingRequests: 100
+        maxRequestsPerConnection: 50
+      tcp:
+        maxConnections: 500
+    tls:
+      mode: ISTIO_MUTUAL
