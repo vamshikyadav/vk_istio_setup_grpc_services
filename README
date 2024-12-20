@@ -23,3 +23,7 @@ resources:
 _________________________________________________________
 PBS --> 
 Prevent nodes from scaling down if ingress gateway pods might be affected. Set Pod Disruption Budgets (PDBs) to ensure at least one pod remains available during node scaling or updates.
+
+
+Ensure that sidecars are pre-warmed to handle traffic efficiently -->
+
