@@ -1,0 +1,30 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: grpc-and-rest-virtualservice
+spec:
+  hosts:
+    - "example-grpc-rest.com"
+  gateways:
+    - grpc-and-rest-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /grpc # gRPC requests are routed based on this prefix
+      route:
+        - destination:
+            host: grpc-service
+            port:
+              number: 50051
+      headers:
+        request:
+          set:
+            x-envoy-upstream-protocol: "h2" # Ensures HTTP/2 for gRPC
+    - match:
+        - uri:
+            prefix: /api # REST requests are routed based on this prefix
+      route:
+        - destination:
+            host: rest-service
+            port:
+              number: 8080
