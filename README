@@ -31,3 +31,8 @@ Ensure that sidecars are pre-warmed to handle traffic efficiently -->
 
 If STRICT mTLS is enforced, ensure the DestinationRule explicitly enables ISTIO_MUTUAL
 
+
+
+kubectl logs -l app=istiod -n istio-system
+kubectl get configmap istio -n istio-system -o yaml
+
