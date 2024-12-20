@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: grpc-ingress-gateway
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway  # Use the default Istio ingress gateway
+  servers:
+    - port:
+        number: 443  # Port for secure gRPC traffic
+        name: grpc  # Name must reflect the protocol (grpc or http2)
+        protocol: HTTP2  # HTTP2 is required for gRPC
+      tls:
+        mode: SIMPLE  # TLS termination
+      hosts:
+        - "*.example.com"  # Replace with your domain
