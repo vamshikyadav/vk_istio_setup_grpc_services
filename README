@@ -12,6 +12,7 @@ kubectl top pods -n istio-system
 Resource Configuration:
 kubectl edit deployment istio-ingressgateway -n istio-system
 
+
 resources:
   requests:
     cpu: 50m 
@@ -19,3 +20,6 @@ resources:
   limits:
     cpu: 500m 
     memory: 256Mi 
+_________________________________________________________
+PBS --> 
+Prevent nodes from scaling down if ingress gateway pods might be affected. Set Pod Disruption Budgets (PDBs) to ensure at least one pod remains available during node scaling or updates.
