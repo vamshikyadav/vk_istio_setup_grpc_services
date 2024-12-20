@@ -14,8 +14,8 @@ kubectl edit deployment istio-ingressgateway -n istio-system
 
 resources:
   requests:
-    cpu: 50m # Reduced from 100m
-    memory: 64Mi # Reduced from 128Mi
+    cpu: 50m 
+    memory: 64Mi 
   limits:
-    cpu: 500m # Reduced from 2
-    memory: 256Mi # Reduced from 1Gi
+    cpu: 500m 
+    memory: 256Mi 
