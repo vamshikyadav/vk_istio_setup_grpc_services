@@ -1,1 +1,5 @@
 ## This document talks about grpc services behind the service mesh
+
+Inspect the Istio ingress gateway logs to ensure it correctly rejects unsupported connections:
+
+kubectl logs -l istio=ingressgateway -n istio-system
