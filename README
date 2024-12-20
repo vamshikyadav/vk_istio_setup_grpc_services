@@ -3,3 +3,8 @@
 Inspect the Istio ingress gateway logs to ensure it correctly rejects unsupported connections:
 
 kubectl logs -l istio=ingressgateway -n istio-system
+
+
+Check the current resource usage using:
+
+kubectl top pods -n istio-system
