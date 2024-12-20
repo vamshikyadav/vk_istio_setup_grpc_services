@@ -8,3 +8,14 @@ kubectl logs -l istio=ingressgateway -n istio-system
 Check the current resource usage using:
 
 kubectl top pods -n istio-system
+
+Resource Configuration:
+kubectl edit deployment istio-ingressgateway -n istio-system
+
+resources:
+  requests:
+    cpu: 50m # Reduced from 100m
+    memory: 64Mi # Reduced from 128Mi
+  limits:
+    cpu: 500m # Reduced from 2
+    memory: 256Mi # Reduced from 1Gi
