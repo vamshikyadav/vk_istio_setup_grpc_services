@@ -27,3 +27,7 @@ Prevent nodes from scaling down if ingress gateway pods might be affected. Set P
 
 Ensure that sidecars are pre-warmed to handle traffic efficiently -->
 
+
+
+If STRICT mTLS is enforced, ensure the DestinationRule explicitly enables ISTIO_MUTUAL
+
