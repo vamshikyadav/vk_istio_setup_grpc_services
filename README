@@ -27,12 +27,10 @@ Prevent nodes from scaling down if ingress gateway pods might be affected. Set P
 
 Ensure that sidecars are pre-warmed to handle traffic efficiently -->
 
-
-
-If STRICT mTLS is enforced, ensure the DestinationRule explicitly enables ISTIO_MUTUAL
-
-
-
-kubectl logs -l app=istiod -n istio-system
-kubectl get configmap istio -n istio-system -o yaml
-
+∂ˆª ∆
+ø π÷… ø÷ˆgø÷÷÷ˆπ÷… ø÷ˆg øo ø
+If STRICT mTLS is enforced, ensure the DestinationRule  /0  09\]';./'//'[]g explicitly enables ISTIO_MUTUAL
+ v io -n istio-system -o yaml
+∂ˆªi9ø≥øˆ∂≥øøˆçøˆ 
+ cv lnl,mm
+  ' m'[;;'']';';''; – –º0
