@@ -1,15 +1,50 @@
-<dependencies>
-  <dependency>
-    <groupId>com.google.cloud</groupId>
-    <artifactId>google-cloud-secretmanager</artifactId>
-    <version>2.33.1</version>
-  </dependency>
-  <dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.10.1</version>
-  </dependency>
-</dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.yourname</groupId>
+  <artifactId>gcp-secret-demo</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <!-- GCP Secret Manager SDK -->
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-secretmanager</artifactId>
+      <version>2.33.1</version>
+    </dependency>
+
+    <!-- Gson for JSON parsing -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.10.1</version>
+    </dependency>
+  </dependencies>
+
+  <!-- Allows running Java classes with main methods -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <mainClass>com.yourname.GCPSecretJsonExtractor</mainClass> <!-- change if needed -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
 
 
 mvn compile exec:java -Dexec.mainClass="com.yourname.GCPSecretJsonExtractor"
