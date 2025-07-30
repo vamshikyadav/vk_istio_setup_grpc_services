@@ -6,36 +6,37 @@ pipeline {
     }
 
     stages {
-        stage('Read JSON and Prompt User') {
+        stage('Prompt and Update JSON') {
             steps {
                 script {
                     def jsonText = readFile(env.JSON_FILE)
                     def json = new groovy.json.JsonSlurper().parseText(jsonText)
 
-                    // Dynamically generate input fields for each key
-                    def inputs = [:]
+                    // Build parameters list for all keys
+                    def paramsList = []
                     json.each { k, v ->
-                        inputs[k] = input(
-                            id: "input_${k}",
-                            message: "Enter value for ${k} (leave empty to keep current)",
-                            parameters: [
-                                string(name: "${k}", defaultValue: "${v}", description: "Update for ${k}")
-                            ]
-                        )
+                        paramsList << string(name: k, defaultValue: "${v}", description: "Enter value for '${k}' (leave empty to skip update)")
                     }
 
-                    // Apply only updated fields (not empty or unchanged)
+                    // Show single input prompt for all keys
+                    def userInput = input(
+                        id: 'jsonInput',
+                        message: 'Update JSON values (leave blank to keep existing)',
+                        parameters: paramsList
+                    )
+
+                    // Clone and apply only updated values
                     def updatedJson = json.clone()
-                    inputs.each { k, v ->
-                        if (v && v != json[k]) {
+                    userInput.each { k, v ->
+                        if (v?.trim() && v != json[k]) {
                             updatedJson[k] = v
                         }
                     }
 
-                    // Write back updated JSON
+                    // Save updated JSON
                     writeFile file: env.JSON_FILE, text: groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(updatedJson))
 
-                    echo "Updated JSON:"
+                    echo "✅ JSON Updated:"
                     echo readFile(env.JSON_FILE)
                 }
             }
