@@ -43,3 +43,29 @@ jobs:
         run: |
           echo "Selected environment: $SELECTED_ENV"
           echo "Using endpoint: $ENDPOINT"
+// loop 
+
+pipeline {
+    agent any
+
+    parameters {
+        text(name: 'ITEMS', defaultValue: 'apple\nbanana\ncherry', description: 'Enter one item per line')
+    }
+
+    stages {
+        stage('Loop Through Values') {
+            steps {
+                script {
+                    // Split the text parameter by newline
+                    def itemsList = params.ITEMS.readLines()
+
+                    // Loop through each value
+                    for (item in itemsList) {
+                        echo "Item: ${item}"
+                    }
+                }
+            }
+        }
+    }
+}
+
